@@ -3,80 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DatroNoise - Offical Datro Noise Website</title>
-    
-    <!-- وارد کردن فونت کالیگرافی از گوگل فونت -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-
+    <title>UTOPIA WORLD | TRAVIS SCOTT (VANILLA)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        /* تنظیمات کل صفحه */
-        body, html {
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        
+        body {
+            background-color: black;
+            color: white;
             margin: 0;
-            padding: 0;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .swiper {
             width: 100%;
             height: 100%;
-            background-color: #000000; /* پس‌زمینه مشکی مطلق */
+        }
+
+        .swiper-wrapper {
+            display: flex !important;
+            align-items: center !important;
+            height: 100% !important;
+        }
+
+        .perspective-2000 {
+            perspective: 2000px;
+            position: absolute;
+            inset: 0;
             display: flex;
-            justify-content: center;
             align-items: center;
-            overflow: hidden;
-            font-family: 'Great Vibes', cursive; /* اعمال فونت کالیگرافی */
+            justify-content: center;
+            z-index: 10;
         }
 
-        /* استایل متن کالیگرافی */
-        .calligraphy-text {
-            color: #ff6a00; /* رنگ نارنجی جذاب */
-            font-size: 6rem; /* اندازه بزرگ متن */
-            text-align: center;
-            user-select: none;
-            padding: 20px;
-            
-            /* ایجاد افکت درخشش نارنجی (Glow Effect) */
-            text-shadow: 
-                0 0 10px rgba(255, 106, 0, 0.8),
-                0 0 20px rgba(255, 106, 0, 0.5),
-                0 0 30px rgba(255, 106, 0, 0.3),
-                0 0 40px rgba(255, 106, 0, 0.2);
-            
-            /* انیمیشن تپش ملایم نور */
-            animation: pulse 3s ease-in-out infinite alternate;
+        .cursor-w-resize { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>'), w-resize; }
+        .cursor-e-resize { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>'), e-resize; }
+
+        .image-card {
+            /* We handle transitions via Swiper's speed and progress for perfect syncing */
+            will-change: transform, opacity;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* انیمیشن برای درخشش متن */
-        @keyframes pulse {
-            0% {
-                text-shadow: 
-                    0 0 10px rgba(255, 106, 0, 0.8),
-                    0 0 20px rgba(255, 106, 0, 0.5),
-                    0 0 30px rgba(255, 106, 0, 0.3);
-                transform: scale(1);
-            }
-            100% {
-                text-shadow: 
-                    0 0 15px rgba(255, 106, 0, 1),
-                    0 0 30px rgba(255, 106, 0, 0.8),
-                    0 0 45px rgba(255, 106, 0, 0.6),
-                    0 0 60px rgba(255, 106, 0, 0.4);
-                transform: scale(1.02); /* بزرگنمایی بسیار خفیف برای پویایی بیشتر */
-            }
+        .card-inner {
+            transition: transform 0.5s ease-out;
+            box-shadow: 0 0 80px rgba(0,0,0,0.8);
+            width: 100%;
+            height: 100%;
         }
 
-        /* بهینه‌سازی برای گوشی‌های موبایل */
-        @media (max-width: 768px) {
-            .calligraphy-text {
-                font-size: 3.5rem;
-            }
+        .swiper-foreground {
+            overflow: visible !important;
+            width: 100%;
+            height: 100%;
+        }
+
+        video {
+            filter: brightness(0.6);
         }
     </style>
 </head>
 <body>
 
-    <!-- متن اصلی -->
-    <div class="calligraphy-text">
-        Datro Noise
-    </div>
+    <main class="relative h-[100dvh] w-full flex items-center justify-center">
+        
+        <!-- Logo (adjusted padding since header is removed) -->
+        <div class="absolute top-0 w-full flex justify-center pt-[48px] sm:pt-[64px] z-[50] pointer-events-none">
+            <img src="https://raw.githubusercontent.com/Alofte/DTN/main/Monochrom.png" alt="Logo" class="h-[72px] sm:h-[96px] opacity-80">
+        </div>
 
+        <!-- Background Swiper (EMPTY - no videos) -->
+        <div class="absolute inset-0 z-0">
+            <div class="swiper swiper-background">
+                <div class="swiper-wrapper" id="bg-wrapper">
+                    <!-- Slides injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Foreground Swiper -->
+        <div class="absolute inset-0 z-10 perspective-2000">
+            <div class="swiper swiper-foreground !overflow-visible">
+                <div class="swiper-wrapper" id="fg-wrapper">
+                    <!-- Slides injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Areas -->
+        <button id="prev-btn" class="absolute left-0 top-0 w-[20vw] h-full z-[40] cursor-w-resize"></button>
+        <button id="next-btn" class="absolute right-0 top-0 w-[20vw] h-full z-[40] cursor-e-resize"></button>
+
+        <!-- Footer Caption -->
+        <div class="absolute bottom-0 w-full flex flex-col items-center pb-[86px] sm:pb-[100px] z-[50] pointer-events-none">
+            <h3 id="slide-caption" class="text-[14px] sm:text-[16px] tracking-[4px] font-medium text-white/80"></h3>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Define new image slides (NO VIDEOS)
+        const SLIDES = [
+            { id: 1, image: "https://raw.githubusercontent.com/Alofte/DTN/main/21.jpg", title: "21" },
+            { id: 2, image: "https://raw.githubusercontent.com/Alofte/DTN/main/Derya.jpg", title: "Derya" },
+            { id: 3, image: "https://raw.githubusercontent.com/Alofte/DTN/main/Elegant.jpg", title: "Elegant" },
+            { id: 4, image: "https://raw.githubusercontent.com/Alofte/DTN/main/Gravity.jpg", title: "Gravity" },
+            { id: 5, image: "https://raw.githubusercontent.com/Alofte/DTN/main/Heimat.jpg", title: "Heimat" },
+            { id: 6, image: "https://raw.githubusercontent.com/Alofte/DTN/main/Kindered.jpg", title: "Kindred" },
+            { id: 7, image: "https://raw.githubusercontent.com/Alofte/DTN/main/Laurent.jpg", title: "Laurent" }
+        ];
+
+        class ShuffleText {
+            constructor(element) {
+                this.element = element;
+                this.originalText = element.innerText;
+                this.characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                this.interval = null;
+            }
+            setText(newText) {
+                this.originalText = newText;
+                this.start();
+            }
+            start() {
+                let iteration = 0;
+                clearInterval(this.interval);
+                this.interval = setInterval(() => {
+                    this.element.innerText = this.originalText
+                        .split("")
+                        .map((char, index) => {
+                            if (index < iteration) return this.originalText[index];
+                            return this.characters[Math.floor(Math.random() * this.characters.length)];
+                        })
+                        .join("");
+                    if (iteration >= this.originalText.length) clearInterval(this.interval);
+                    iteration += 1 / 3;
+                }, 30);
+            }
+        }
+
+        // Initialize UI
+        const bgWrapper = document.getElementById('bg-wrapper');
+        const fgWrapper = document.getElementById('fg-wrapper');
+        const slideCaption = document.getElementById('slide-caption');
+        
+        // Only caption shuffler remains
+        const captionShuffle = new ShuffleText(slideCaption);
+
+        SLIDES.forEach(slide => {
+            // Bg slide — EMPTY (no video, just black)
+            bgWrapper.innerHTML += `
+                <div class="swiper-slide bg-black">
+                    <div class="absolute inset-0 bg-black/50 z-[1]"></div>
+                    <!-- No video -->
+                </div>`;
+            
+            // Fg slide — with new image
+            fgWrapper.innerHTML += `
+                <div class="swiper-slide !w-[280px] !h-[280px] sm:!w-[420px] sm:!h-[420px] image-card">
+                    <div class="card-inner relative rounded-[4px] overflow-hidden group">
+                        <img src="${slide.image}" alt="${slide.title}" class="w-full h-full object-cover select-none pointer-events-none">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 sm:group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                            <div class="px-8 py-3 border border-white/30 bg-white/10 backdrop-blur-md rounded-[2px] text-[10px] tracking-[4px]">EXPLORE</div>
+                        </div>
+                    </div>
+                </div>`;
+        });
+
+        const bgSwiper = new Swiper('.swiper-background', {
+            effect: 'fade',
+            fadeEffect: { crossFade: true },
+            allowTouchMove: false,
+            speed: 1200
+        });
+
+        const fgSwiper = new Swiper('.swiper-foreground', {
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            speed: 1200,
+            watchSlidesProgress: true,
+            slideToClickedSlide: true,
+            resistanceRatio: 0,
+            on: {
+                init: function() {
+                    captionShuffle.setText(SLIDES[0].title);
+                    this.emit('setTranslate', 0); // Force initial update
+                },
+                slideChange: function() {
+                    bgSwiper.slideTo(this.activeIndex);
+                    captionShuffle.setText(SLIDES[this.activeIndex].title);
+                },
+                setTranslate: function() {
+                    const swiper = this;
+                    const { slides, width, height, slidesPixelsOffset } = swiper;
+                    
+                    for (let i = 0; i < slides.length; i += 1) {
+                        const $slideEl = slides[i];
+                        const slideProgress = slides[i].progress;
+                        const absProgress = Math.abs(slideProgress);
+                        
+                        let modify = 1;
+                        if (absProgress > 1) {
+                            modify = (absProgress - 1) * 0.3 + 1;
+                        }
+                        
+                        const translate = slideProgress * modify * 40; 
+                        const scale = 1 - (absProgress * 0.3);
+                        const opacity = 1 - (absProgress * 0.4);
+                        const rotateY = slideProgress * 15;
+                        const zIndex = 100 - Math.floor(absProgress * 10);
+
+                        $slideEl.style.zIndex = zIndex;
+                        $slideEl.style.opacity = opacity > 0 ? opacity : 0;
+                        $slideEl.style.transform = `translate3d(${translate}%, 0, 0) scale(${scale}) rotateY(${rotateY}deg)`;
+                        
+                        $slideEl.style.pointerEvents = absProgress < 0.2 ? 'auto' : 'none';
+                    }
+                },
+                setTransition: function(duration) {
+                    const swiper = this;
+                    const { slides } = swiper;
+                    for (let i = 0; i < slides.length; i += 1) {
+                        slides[i].style.transitionDuration = `${duration}ms`;
+                    }
+                }
+            }
+        });
+
+        // Parallax Effect
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 8;
+            const y = (e.clientY / window.innerHeight - 0.5) * 8;
+            const activeSlideInner = document.querySelector('.swiper-slide-active .card-inner');
+            if (activeSlideInner) {
+                activeSlideInner.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+            }
+        });
+
+        // Navigation
+        document.getElementById('prev-btn').addEventListener('click', () => fgSwiper.slidePrev());
+        document.getElementById('next-btn').addEventListener('click', () => fgSwiper.slideNext());
+
+    </script>
 </body>
 </html>
