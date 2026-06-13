@@ -8,15 +8,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-        
         body {
-            background-color: black;
-            color: white;
+            background: #000;
+            color: #fff;
             margin: 0;
             overflow: hidden;
             font-family: 'Inter', sans-serif;
             text-transform: uppercase;
-            user-select: none; 
+            user-select: none;
             overscroll-behavior: none;
         }
 
@@ -41,12 +40,146 @@
             z-index: 10;
         }
 
+        .mobile-bottom-nav {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 80;
+            padding: 0 18px calc(14px + env(safe-area-inset-bottom));
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            pointer-events: auto;
+        }
+
+        .mobile-nav-link {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.74);
+            transition: color 0.2s ease;
+            background: transparent;
+            border: 0;
+            padding: 0;
+            font-family: inherit;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .mobile-nav-link:hover {
+            color: #fff;
+        }
+
+        .about-panel-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 85;
+            background: rgba(0, 0, 0, 0.74);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 22px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .about-panel-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .about-panel {
+            position: relative;
+            width: min(92vw, 430px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 8px;
+            background: linear-gradient(180deg, rgba(26, 26, 26, 0.95) 0%, rgba(12, 12, 12, 0.95) 100%);
+            box-shadow: 0 24px 54px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+            transform: translateY(12px) scale(0.985);
+            opacity: 0;
+            transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease;
+            padding: 20px 18px 18px;
+        }
+
+        .about-panel-backdrop.open .about-panel {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .about-panel-title {
+            font-size: 11px;
+            letter-spacing: 2.8px;
+            color: rgba(255, 255, 255, 0.86);
+            margin: 0;
+        }
+
+        .about-panel-divider {
+            width: 34px;
+            height: 1px;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        .about-panel-text {
+            margin: 12px 0 0;
+            font-size: 12px;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.72);
+            text-transform: none;
+        }
+
+        .about-panel-email {
+            margin-top: 10px;
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 1.2px;
+            color: rgba(255, 255, 255, 0.86);
+            text-transform: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+        }
+
+        .about-panel-title,
+        .about-panel-divider,
+        .about-panel-text,
+        .about-panel-email {
+            opacity: 0;
+            transform: translateY(6px);
+            transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.32s ease;
+        }
+
+        .about-panel-backdrop.open .about-panel-title {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.08s;
+        }
+
+        .about-panel-backdrop.open .about-panel-divider {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.12s;
+        }
+
+        .about-panel-backdrop.open .about-panel-text {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.16s;
+        }
+
+        .about-panel-backdrop.open .about-panel-email {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
         @media (hover: hover) {
-            .cursor-w-resize { 
-                cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>'), w-resize; 
+            .cursor-w-resize {
+                cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'><path d='M19 12H5M12 19l-7-7 7-7'/></svg>"), w-resize;
             }
-            .cursor-e-resize { 
-                cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'), e-resize; 
+
+            .cursor-e-resize {
+                cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'><path d='M5 12h14M12 5l7 7-7 7'/></svg>"), e-resize;
             }
         }
 
@@ -59,7 +192,7 @@
         }
 
         .card-inner {
-            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
             width: 100%;
             height: 100%;
             border-radius: 4px;
@@ -69,7 +202,10 @@
             z-index: 5;
         }
 
-        /* ✅ Bottom Info Container */
+        .focus-panel {
+            display: none;
+        }
+
         .track-bottom-container {
             position: absolute;
             left: 50%;
@@ -77,53 +213,129 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* ✅ Mobile: 30% Overlap (24px of 80px height) */
-            top: calc(100% - 24px); 
-            bottom: auto;
-            justify-content: flex-start; 
-            pointer-events: none; 
-            z-index: 20;
+            bottom: -140px;
             opacity: 0;
             transform: translateX(-50%) translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            pointer-events: none;
+            z-index: 20;
         }
 
-        /* ✅ Desktop: Pushed down completely below image */
+        .focus-mode .swiper-slide-active .track-bottom-container {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+
+        .track-player-wrapper {
+            width: 100%;
+            height: 80px;
+            background: #121212;
+            margin-bottom: 12px;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            touch-action: manipulation;
+            position: relative;
+            z-index: 1000;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .track-player-wrapper::after {
+            content: none;
+        }
+
+        .track-player-wrapper::before {
+            content: none;
+        }
+
+        .track-player-wrapper iframe {
+            display: block;
+            width: 100%;
+            height: 80px;
+            border: 0;
+            pointer-events: auto !important;
+            position: relative;
+            z-index: 1001;
+            background: #121212;
+        }
+
         @media (min-width: 640px) {
-            .track-bottom-container {
-                top: auto;
-                bottom: -140px;
-                justify-content: flex-start;
-                transform: translateX(-50%) translateY(20px);
+            .track-player-wrapper {
+                border-radius: 12px;
+                overflow: hidden;
+            }
+
+            .track-player-wrapper iframe {
+                border-radius: 12px;
             }
         }
 
-        /* ✅ Player Wrapper */
-        .track-player-wrapper {
-            width: 100%; 
-            height: 80px;
-            border-radius: 12px;
-            overflow: hidden;
-            pointer-events: auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 15px; 
-            background: #121212;
-            z-index: 25;
+        @media (max-width: 639px) {
+            .focus-panel {
+                display: block;
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: min(88vw, 380px);
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+                z-index: 999;
+                isolation: isolate;
+            }
+
+            .focus-panel.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .track-bottom-container {
+                display: none;
+            }
+
+            .track-player-wrapper {
+                background: transparent;
+                padding: 2px;
+                box-sizing: border-box;
+            }
+
+            .track-player-wrapper::after {
+                content: "";
+                position: absolute;
+                inset: -1px;
+                border-radius: 12px;
+                border: 1px solid rgba(255, 255, 255, 0.22);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+                pointer-events: none;
+                z-index: 1003;
+            }
+
+            .track-player-wrapper::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: 12px;
+                background: #121212;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+                pointer-events: none;
+                z-index: 999;
+            }
+
+            .track-player-wrapper iframe {
+                height: 100%;
+                background: transparent;
+            }
         }
 
-        /* ✅ Description Text */
         .track-sub-desc {
-            width: 90%;
-            max-width: 400px;
             text-align: center;
             font-size: 12px;
             line-height: 1.5;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.72);
             text-transform: none;
-            font-family: 'Inter', sans-serif;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
             padding: 0 10px;
-            z-index: 25;
         }
 
         @media (min-width: 640px) {
@@ -132,21 +344,13 @@
             }
         }
 
-        /* ✅ Focus Mode Active States */
-        .focus-mode .track-bottom-container {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* Explore Button */
         .explore-btn {
             position: absolute;
             inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0, 0, 0, 0.4);
             opacity: 0;
             pointer-events: none;
             z-index: 10;
@@ -160,15 +364,77 @@
 
         .explore-btn-content {
             padding: 10px 20px;
-            border: 1px solid rgba(255,255,255,0.3);
-            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(4px);
             border-radius: 2px;
             font-size: 12px;
             letter-spacing: 3px;
-            text-transform: uppercase;
-            color: white;
+            color: #fff;
             cursor: pointer;
+        }
+
+        .tap-hint {
+            position: absolute;
+            bottom: -55px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 30;
+            pointer-events: none;
+            opacity: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 639px) {
+            .tap-hint {
+                display: flex;
+            }
+        }
+
+        .tap-hint.visible {
+            opacity: 1;
+            animation: hintFadeOut 0.5s ease forwards;
+            animation-delay: 2.5s;
+        }
+
+        .tap-hint-arrow {
+            width: 18px;
+            height: 18px;
+            color: rgba(255, 255, 255, 0.45);
+            animation: arrowFloat 1.2s ease-in-out infinite;
+        }
+
+        @keyframes arrowFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: translateY(-4px);
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes hintFadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .tap-hint-text {
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.3);
+            white-space: nowrap;
         }
 
         .swiper-foreground {
@@ -177,7 +443,6 @@
             height: 100%;
         }
 
-        /* ✅ Focus Mode Styles */
         .focus-mode .swiper-slide:not(.swiper-slide-active) {
             opacity: 0 !important;
             pointer-events: none;
@@ -185,57 +450,102 @@
 
         .focus-mode .swiper-slide-active .card-inner {
             transform: scale(1.05);
-            box-shadow: 0 0 60px rgba(255,255,255,0.1);
-        }
-        
-        .focus-mode .cursor-w-resize,
-        .focus-mode .cursor-e-resize {
-            cursor: none;
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.1);
         }
 
         .focus-mode #slide-caption {
             opacity: 0;
             transition: opacity 0.3s;
         }
+
+        .focus-mode .tap-hint {
+            display: none !important;
+        }
+
+        .focus-mode #mobile-bottom-nav {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @media (max-width: 639px) {
+            .focus-mode .swiper-foreground,
+            .focus-mode #prev-btn,
+            .focus-mode #next-btn {
+                pointer-events: none !important;
+            }
+
+            #slide-caption-wrap {
+                top: auto;
+                bottom: 28px;
+                padding-bottom: 0;
+                transition: top 0.28s ease;
+            }
+        }
     </style>
 </head>
 <body>
-
     <main class="relative h-[100dvh] w-full flex items-center justify-center">
-        
-        <!-- Logo -->
         <div class="absolute top-0 w-full flex justify-center pt-[20px] sm:pt-[40px] z-[50] pointer-events-none">
             <img src="https://raw.githubusercontent.com/Alofte/DTN/main/Monochrom.png" alt="Logo" class="h-[80px] sm:h-[120px] opacity-80">
         </div>
 
-        <!-- Background Swiper -->
         <div class="absolute inset-0 z-0">
             <div class="swiper swiper-background">
                 <div class="swiper-wrapper" id="bg-wrapper"></div>
             </div>
         </div>
 
-        <!-- Foreground Swiper -->
         <div class="absolute inset-0 z-10 perspective-2000">
             <div class="swiper swiper-foreground !overflow-hidden">
                 <div class="swiper-wrapper" id="fg-wrapper"></div>
             </div>
         </div>
 
-        <!-- Navigation Areas -->
-        <button id="prev-btn" class="absolute left-0 top-0 w-[20vw] h-full z-[40]"></button>
-        <button id="next-btn" class="absolute right-0 top-0 w-[20vw] h-full z-[40]"></button>
+        <button id="prev-btn" class="absolute left-0 top-0 w-[20vw] h-full z-[40]" aria-label="Previous"></button>
+        <button id="next-btn" class="absolute right-0 top-0 w-[20vw] h-full z-[40]" aria-label="Next"></button>
 
-        <!-- Footer Caption -->
-        <div class="absolute bottom-0 w-full flex flex-col items-center pb-[60px] sm:pb-[100px] z-[50] pointer-events-none">
+        <div id="slide-caption-wrap" class="absolute bottom-0 w-full flex flex-col items-center pb-[60px] sm:pb-[100px] z-[50] pointer-events-none">
             <h3 id="slide-caption" class="text-[16px] sm:text-[22px] tracking-[4px] font-medium text-white/80"></h3>
         </div>
-
     </main>
+
+    <nav id="mobile-bottom-nav" class="mobile-bottom-nav sm:hidden" aria-label="Mobile quick links">
+        <button type="button" class="mobile-nav-link" data-panel="about">About</button>
+        <button type="button" class="mobile-nav-link" data-panel="contact">Contact</button>
+        <a href="https://open.spotify.com/artist/2v4h11BVS2n9IFlCSK13Gi?go=1&sp_cid=0345c54a-50a2-4305-9a81-22c97788a626" target="_blank" rel="noopener" class="mobile-nav-link">Spotify</a>
+        <a href="https://ffm.bio/8y3mk6e" target="_blank" rel="noopener" class="mobile-nav-link">Platforms</a>
+    </nav>
+
+    <div id="about-panel-backdrop" class="about-panel-backdrop sm:hidden" aria-hidden="true">
+        <section class="about-panel" aria-label="About Zen Gallery">
+            <h4 class="about-panel-title">This is DatroNoise</h4>
+            <div class="about-panel-divider"></div>
+            <p class="about-panel-text">
+                I’m a composer, producer and multi-instrumentalist creating music across R&B, pop dance and trap.<br><br>
+                Since 2019, I’ve been developing my sound independently through self-learning and a hands-on approach to composition and production. Along the way, I’ve expanded into electric guitar, classical guitar, piano and other instruments as different ways of exploring ideas.<br><br>
+                My music is shaped by atmosphere, memory and feeling - often beginning with a visual moment, a sentence, or a sound I hear in everyday life before becoming music.<br><br>
+                I’m not interested in making background music or staying in one emotion. I want to create records that feel immersive and open-ended - balancing warmth, nostalgia and space in a way that stays with you after the music ends.
+            </p>
+        </section>
+    </div>
+
+    <div id="contact-panel-backdrop" class="about-panel-backdrop sm:hidden" aria-hidden="true">
+        <section class="about-panel" aria-label="Contact DatroNoise">
+            <h4 class="about-panel-title">lets talk</h4>
+            <div class="about-panel-divider"></div>
+            <a class="about-panel-email" href="mailto:Datronoise@gmail.com">Datronoise@gmail.com</a>
+        </section>
+    </div>
+
+    <div id="focus-panel" class="focus-panel">
+        <div class="track-player-wrapper">
+            <iframe id="spotify-frame" src="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" scrolling="no"></iframe>
+        </div>
+        <div id="track-desc" class="track-sub-desc"></div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // ✅ Updated Order and Descriptions
         const SLIDES = [
             { id: 1, image: "https://raw.githubusercontent.com/Alofte/DTN/main/11.jpg", title: "11", spotifyId: "2ZOGo01fvXIfOjC23kIJpl", desc: "11 stands between balance and change.<br>A moment where stability begins to transform into something new." },
             { id: 2, image: "https://raw.githubusercontent.com/Alofte/DTN/main/Laurent.jpg", title: "Laurent", spotifyId: "4israPNcTaeTHrgAWIM3wO", desc: "Laurent lives in motion and light.<br>Built on bright rhythm and effortless movement." },
@@ -254,10 +564,12 @@
                 this.characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
                 this.interval = null;
             }
+
             setText(newText) {
                 this.originalText = newText;
                 this.start();
             }
+
             start() {
                 let iteration = 0;
                 clearInterval(this.interval);
@@ -269,6 +581,7 @@
                             return this.characters[Math.floor(Math.random() * this.characters.length)];
                         })
                         .join("");
+
                     if (iteration >= this.originalText.length) clearInterval(this.interval);
                     iteration += 1 / 3;
                 }, 30);
@@ -278,25 +591,43 @@
         const bgWrapper = document.getElementById('bg-wrapper');
         const fgWrapper = document.getElementById('fg-wrapper');
         const slideCaption = document.getElementById('slide-caption');
+        const slideCaptionWrap = document.getElementById('slide-caption-wrap');
+        const focusPanel = document.getElementById('focus-panel');
+        const spotifyFrame = document.getElementById('spotify-frame');
+        const trackDesc = document.getElementById('track-desc');
+        const mobileBottomNav = document.getElementById('mobile-bottom-nav');
+        const aboutPanelBackdrop = document.getElementById('about-panel-backdrop');
+        const contactPanelBackdrop = document.getElementById('contact-panel-backdrop');
         const captionShuffle = new ShuffleText(slideCaption);
+        let activeFocusSlide = null;
+        let activeDesktopFrame = null;
 
-        SLIDES.forEach(slide => {
+        const hasSeenHint = localStorage.getItem('zenGalleryHintSeen');
+
+        SLIDES.forEach((slide, index) => {
             bgWrapper.innerHTML += `
                 <div class="swiper-slide bg-black">
                     <div class="absolute inset-0 bg-black/50 z-[1]"></div>
                 </div>`;
-            
+
+            const tapHintHTML = index === 1 && !hasSeenHint ? `
+                <div class="tap-hint" id="tap-hint">
+                    <svg class="tap-hint-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 19V5M5 12l7-7 7 7"></path>
+                    </svg>
+                    <div class="tap-hint-text">Tap to explore</div>
+                </div>
+            ` : '';
+
             fgWrapper.innerHTML += `
                 <div class="swiper-slide !w-[300px] !h-[300px] sm:!w-[420px] sm:!h-[420px] image-card">
-                    
-                    <!-- ✅ Bottom Info: Player + Description -->
+                    ${tapHintHTML}
                     <div class="track-bottom-container">
                         <div class="track-player-wrapper">
-                            <iframe style="border-radius:12px" src="" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                            <iframe class="slide-spotify-frame" src="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" scrolling="no"></iframe>
                         </div>
                         <div class="track-sub-desc">${slide.desc}</div>
                     </div>
-
                     <div class="card-inner">
                         <img src="${slide.image}" alt="${slide.title}" class="w-full h-full object-cover select-none pointer-events-none">
                         <div class="explore-btn">
@@ -313,7 +644,38 @@
             speed: 1800
         });
 
-        const fgSwiper = new Swiper('.swiper-foreground', {
+        let fgSwiper;
+        let hintShown = false;
+
+        function showFirstSlideExplore(swiper) {
+            const firstSlide = swiper.slides[0];
+            const exploreBtn = firstSlide.querySelector('.explore-btn');
+
+            if (exploreBtn && window.innerWidth < 640) {
+                setTimeout(() => {
+                    exploreBtn.classList.add('visible');
+                    setTimeout(() => {
+                        exploreBtn.classList.remove('visible');
+                    }, 3000);
+                }, 2000);
+            }
+        }
+
+        function showSecondSlideHint() {
+            if (hintShown || hasSeenHint || window.innerWidth >= 640) return;
+            const tapHint = document.getElementById('tap-hint');
+
+            if (tapHint) {
+                hintShown = true;
+                tapHint.classList.add('visible');
+                setTimeout(() => {
+                    tapHint.classList.remove('visible');
+                    localStorage.setItem('zenGalleryHintSeen', 'true');
+                }, 3000);
+            }
+        }
+
+        fgSwiper = new Swiper('.swiper-foreground', {
             centeredSlides: true,
             slidesPerView: 'auto',
             speed: 1800,
@@ -321,17 +683,20 @@
             slideToClickedSlide: true,
             resistanceRatio: 0.7,
             allowTouchMove: true,
-
             on: {
                 init: function() {
                     captionShuffle.setText(SLIDES[0].title);
                     this.emit('setTranslate', 0);
                     setupExploreButtons(this);
+                    if (window.innerWidth < 640) showFirstSlideExplore(this);
+                    requestAnimationFrame(positionMobileCaption);
                 },
                 slideChange: function() {
                     bgSwiper.slideTo(this.activeIndex);
                     captionShuffle.setText(SLIDES[this.activeIndex].title);
                     setupExploreButtons(this);
+                    if (this.activeIndex === 1) showSecondSlideHint();
+                    requestAnimationFrame(positionMobileCaption);
                 },
                 setTranslate: function() {
                     const swiper = this;
@@ -341,22 +706,18 @@
                         const slide = swiper.slides[i];
                         const progress = slide.progress;
                         const exploreBtn = slide.querySelector('.explore-btn');
-                        
-                        const isCenter = Math.abs(progress) < 0.1; 
-
-                        let translateX, scale, opacity, zIndex;
+                        const isCenter = Math.abs(progress) < 0.1;
+                        let translateX;
+                        let scale;
+                        let opacity;
+                        let zIndex;
 
                         if (Math.abs(progress) <= 1) {
                             translateX = progress * 50;
                             const absProgress = Math.abs(progress);
                             scale = 1 - (absProgress * 0.1);
                             opacity = 1 - (absProgress * 0.8);
-
-                            if (isCenter) {
-                                zIndex = 10;
-                            } else {
-                                zIndex = 1;
-                            }
+                            zIndex = isCenter ? 10 : 1;
                         } else {
                             translateX = progress > 0 ? 100 : -100;
                             scale = 0.8;
@@ -367,36 +728,37 @@
                         slide.style.transform = `translateX(${translateX}%) scale(${scale})`;
                         slide.style.opacity = opacity;
                         slide.style.zIndex = zIndex;
-                        
-                        if (isCenter && !isFocusMode) {
+                        slide.style.transition = 'transform 1.8s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1.8s cubic-bezier(0.25, 0.1, 0.25, 1), z-index 0s linear';
+
+                        const allowCenterInteraction = isCenter && (!isFocusMode || window.innerWidth >= 640);
+
+                        if (allowCenterInteraction) {
                             slide.style.pointerEvents = 'auto';
-                            if(exploreBtn) exploreBtn.style.pointerEvents = 'auto';
+                            if (exploreBtn) exploreBtn.style.pointerEvents = 'auto';
                         } else {
                             slide.style.pointerEvents = 'none';
-                            if(exploreBtn) {
+                            if (exploreBtn) {
                                 exploreBtn.style.pointerEvents = 'none';
                                 exploreBtn.classList.remove('visible');
                             }
                         }
-                        
-                        slide.style.transition = 'transform 1.8s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1.8s cubic-bezier(0.25, 0.1, 0.25, 1), z-index 0s linear';
                     }
                 }
             }
         });
 
         function setupExploreButtons(swiper) {
-            swiper.slides.forEach(slide => {
+            swiper.slides.forEach((slide) => {
                 const exploreBtn = slide.querySelector('.explore-btn');
-                
+                if (!exploreBtn || exploreBtn.dataset.bound === 'true') return;
+
                 const showButton = () => {
                     if (Math.abs(slide.progress) < 0.1 && !document.body.classList.contains('focus-mode')) {
                         exploreBtn.classList.add('visible');
                     }
                 };
-                const hideButton = () => {
-                    exploreBtn.classList.remove('visible');
-                };
+
+                const hideButton = () => exploreBtn.classList.remove('visible');
 
                 slide.addEventListener('mouseenter', showButton);
                 slide.addEventListener('mouseleave', hideButton);
@@ -405,75 +767,240 @@
                     e.stopPropagation();
                     enterFocusMode(slide);
                 });
+
+                exploreBtn.dataset.bound = 'true';
             });
         }
 
+        function positionFocusPanel(slide) {
+            if (window.innerWidth >= 640) return;
+            if (!slide) return;
+
+            const rect = slide.getBoundingClientRect();
+            const mobileInset = window.innerWidth < 640 ? 10 : 8;
+            const panelWidth = Math.max(280, Math.min(rect.width - mobileInset, 388));
+            const left = Math.max(12, Math.min(window.innerWidth - panelWidth - 12, rect.left + (rect.width - panelWidth) / 2));
+
+            let top;
+            if (window.innerWidth < 640) {
+                top = rect.bottom - 26;
+            } else {
+                top = rect.bottom + 14;
+            }
+
+            const estimatedHeight = 170;
+            top = Math.min(top, window.innerHeight - estimatedHeight);
+            top = Math.max(12, top);
+
+            focusPanel.style.width = `${panelWidth}px`;
+            focusPanel.style.left = `${left}px`;
+            focusPanel.style.top = `${top}px`;
+        }
+
+        function positionMobileCaption() {
+            if (!slideCaptionWrap) return;
+
+            if (window.innerWidth >= 640 || !fgSwiper) {
+                slideCaptionWrap.style.top = '';
+                slideCaptionWrap.style.bottom = '';
+                return;
+            }
+
+            const activeSlide = fgSwiper.slides[fgSwiper.activeIndex];
+            if (!activeSlide) return;
+
+            const slideRect = activeSlide.getBoundingClientRect();
+            const availableBottom = window.innerHeight;
+            const middlePoint = slideRect.bottom + ((availableBottom - slideRect.bottom) / 2);
+            const captionHeight = slideCaptionWrap.offsetHeight || 24;
+            const minTop = slideRect.bottom + 12;
+            const maxTop = availableBottom - captionHeight - 8;
+            const top = Math.max(minTop, Math.min(middlePoint - (captionHeight / 2), maxTop));
+
+            slideCaptionWrap.style.top = `${top}px`;
+            slideCaptionWrap.style.bottom = 'auto';
+        }
+
         function enterFocusMode(activeSlide) {
+            closeAboutPanel();
+            closeContactPanel();
             document.body.classList.add('focus-mode');
-            
-            // ✅ LOCK SWIPER
             fgSwiper.params.allowTouchMove = false;
             fgSwiper.update();
 
-            const allBtns = document.querySelectorAll('.explore-btn');
-            allBtns.forEach(btn => btn.classList.remove('visible'));
+            document.querySelectorAll('.explore-btn').forEach((btn) => btn.classList.remove('visible'));
 
             const index = Array.from(fgSwiper.slides).indexOf(activeSlide);
             const data = SLIDES[index];
+            if (!data) return;
 
-            if (data && data.spotifyId) {
-                const iframe = activeSlide.querySelector('iframe');
-                if (iframe) {
-                    iframe.src = `https://open.spotify.com/embed/track/${data.spotifyId}?utm_source=generator&theme=0`;
-                }
+            activeFocusSlide = activeSlide;
+
+            if (window.innerWidth < 640) {
+                trackDesc.innerHTML = data.desc;
+                spotifyFrame.src = `https://open.spotify.com/embed/track/${data.spotifyId}?utm_source=generator&theme=0`;
+                positionFocusPanel(activeSlide);
+                focusPanel.classList.add('active');
+                requestAnimationFrame(() => {
+                    positionFocusPanel(activeSlide);
+                });
+                return;
+            }
+
+            const desktopFrame = activeSlide.querySelector('.slide-spotify-frame');
+            if (desktopFrame) {
+                desktopFrame.src = `https://open.spotify.com/embed/track/${data.spotifyId}?utm_source=generator&theme=0`;
+                activeDesktopFrame = desktopFrame;
             }
         }
 
         function exitFocusMode() {
             document.body.classList.remove('focus-mode');
-            
-            // ✅ UNLOCK SWIPER
             fgSwiper.params.allowTouchMove = true;
             fgSwiper.update();
 
-            const iframes = document.querySelectorAll('iframe');
-            iframes.forEach(iframe => iframe.src = '');
+            focusPanel.classList.remove('active');
+            spotifyFrame.src = '';
+            trackDesc.innerHTML = '';
 
-            fgSwiper.emit('setTranslate'); 
+            if (activeDesktopFrame) {
+                activeDesktopFrame.src = '';
+                activeDesktopFrame = null;
+            }
+
+            activeFocusSlide = null;
+            fgSwiper.emit('setTranslate');
         }
 
-        document.addEventListener('click', (e) => {
-            if (document.body.classList.contains('focus-mode')) {
-                if (e.target.closest('.track-bottom-container')) return;
-                if (e.target.closest('.card-inner')) return;
-                exitFocusMode();
+        function openAboutPanel() {
+            if (!aboutPanelBackdrop || document.body.classList.contains('focus-mode')) return;
+            closeContactPanel();
+            aboutPanelBackdrop.classList.add('open');
+            aboutPanelBackdrop.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeAboutPanel() {
+            if (!aboutPanelBackdrop) return;
+            aboutPanelBackdrop.classList.remove('open');
+            aboutPanelBackdrop.setAttribute('aria-hidden', 'true');
+        }
+
+        function openContactPanel() {
+            if (!contactPanelBackdrop || document.body.classList.contains('focus-mode')) return;
+            closeAboutPanel();
+            contactPanelBackdrop.classList.add('open');
+            contactPanelBackdrop.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeContactPanel() {
+            if (!contactPanelBackdrop) return;
+            contactPanelBackdrop.classList.remove('open');
+            contactPanelBackdrop.setAttribute('aria-hidden', 'true');
+        }
+
+        window.addEventListener('resize', () => {
+            positionMobileCaption();
+
+            if (window.innerWidth >= 640) {
+                closeAboutPanel();
+                closeContactPanel();
+            }
+
+            if (!document.body.classList.contains('focus-mode') || !activeFocusSlide) return;
+
+            if (window.innerWidth < 640) {
+                if (activeDesktopFrame) {
+                    activeDesktopFrame.src = '';
+                    activeDesktopFrame = null;
+                }
+                const index = Array.from(fgSwiper.slides).indexOf(activeFocusSlide);
+                const data = SLIDES[index];
+                if (data) {
+                    trackDesc.innerHTML = data.desc;
+                    spotifyFrame.src = `https://open.spotify.com/embed/track/${data.spotifyId}?utm_source=generator&theme=0`;
+                    focusPanel.classList.add('active');
+                    positionFocusPanel(activeFocusSlide);
+                }
+                return;
+            }
+
+            focusPanel.classList.remove('active');
+            spotifyFrame.src = '';
+            trackDesc.innerHTML = '';
+
+            if (!activeDesktopFrame) {
+                const index = Array.from(fgSwiper.slides).indexOf(activeFocusSlide);
+                const data = SLIDES[index];
+                const desktopFrame = activeFocusSlide.querySelector('.slide-spotify-frame');
+                if (data && desktopFrame) {
+                    desktopFrame.src = `https://open.spotify.com/embed/track/${data.spotifyId}?utm_source=generator&theme=0`;
+                    activeDesktopFrame = desktopFrame;
+                }
             }
         });
 
+        mobileBottomNav.querySelectorAll('[data-panel]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const panel = button.dataset.panel;
+                if (panel === 'about') {
+                    openAboutPanel();
+                    return;
+                }
+
+                if (panel === 'contact') {
+                    openContactPanel();
+                    return;
+                }
+            });
+        });
+
+        aboutPanelBackdrop.addEventListener('click', (e) => {
+            if (!e.target.closest('.about-panel')) closeAboutPanel();
+        });
+
+        contactPanelBackdrop.addEventListener('click', (e) => {
+            if (!e.target.closest('.about-panel')) closeContactPanel();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!document.body.classList.contains('focus-mode')) return;
+            if (e.target.closest('#focus-panel')) return;
+            if (e.target.closest('.track-bottom-container')) return;
+            if (e.target.closest('.card-inner')) return;
+            exitFocusMode();
+        });
+
         document.addEventListener('wheel', (e) => {
-            if (document.body.classList.contains('focus-mode')) return;
+            const hasOpenPanel = aboutPanelBackdrop.classList.contains('open') || contactPanelBackdrop.classList.contains('open');
+            if (document.body.classList.contains('focus-mode') || hasOpenPanel) return;
             e.preventDefault();
             if (e.deltaY > 0) fgSwiper.slideNext();
             else fgSwiper.slidePrev();
         }, { passive: false });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (document.body.classList.contains('focus-mode')) exitFocusMode();
-                else {
-                    if (e.key === 'ArrowRight') fgSwiper.slideNext();
-                    if (e.key === 'ArrowLeft') fgSwiper.slidePrev();
-                }
+            if (e.key === 'Escape' && (aboutPanelBackdrop.classList.contains('open') || contactPanelBackdrop.classList.contains('open'))) {
+                closeAboutPanel();
+                closeContactPanel();
+                return;
             }
+            if (e.key === 'Escape' && document.body.classList.contains('focus-mode')) {
+                exitFocusMode();
+                return;
+            }
+            const hasOpenPanel = aboutPanelBackdrop.classList.contains('open') || contactPanelBackdrop.classList.contains('open');
+            if (document.body.classList.contains('focus-mode') || hasOpenPanel) return;
+            if (e.key === 'ArrowRight') fgSwiper.slideNext();
+            if (e.key === 'ArrowLeft') fgSwiper.slidePrev();
         });
 
         document.getElementById('prev-btn').addEventListener('click', () => {
             if (!document.body.classList.contains('focus-mode')) fgSwiper.slidePrev();
         });
+
         document.getElementById('next-btn').addEventListener('click', () => {
             if (!document.body.classList.contains('focus-mode')) fgSwiper.slideNext();
         });
-
     </script>
 </body>
 </html>
