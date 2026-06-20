@@ -18,15 +18,15 @@
     <meta property="og:title" content="DatroNoise | R&B, Pop Dance and Trap Composer, Producer, Multi-Instrumentalist">
     <meta property="og:description" content="Official DatroNoise website. Discover immersive R&B, pop dance and trap releases, explore visual-first track worlds, stream on Spotify, and connect for collaborations.">
     <meta property="og:url" content="https://datronoise.com/">
-    <meta property="og:image" content="https://raw.githubusercontent.com/Alofte/DTN/main/Monoc1hrom.png">
-    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/Alofte/DTN/main/Monoc1hrom.png">
+    <meta property="og:image" content="https://raw.githubusercontent.com/Alofte/DTN/main/WEBP/Vibe%20Logo.png">
+    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/Alofte/DTN/main/WEBP/Vibe%20Logo.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:alt" content="DatroNoise official brand visual">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="DatroNoise | R&B, Pop Dance and Trap Composer, Producer, Multi-Instrumentalist">
     <meta name="twitter:description" content="Official DatroNoise website. Discover immersive R&B, pop dance and trap releases, explore visual-first track worlds, stream on Spotify, and connect for collaborations.">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/Alofte/DTN/main/Monoc1hrom.png">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/Alofte/DTN/main/WEBP/Vibe%20Logo.png">
 
     <link rel="icon" href="https://raw.githubusercontent.com/Alofte/DTN/main/favicon/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/Alofte/DTN/main/favicon/favicon-32x32.png">
@@ -63,6 +63,10 @@
                     ],
                     "sameAs": [
                         "https://open.spotify.com/artist/2v4h11BVS2n9IFlCSK13Gi?go=1&sp_cid=0345c54a-50a2-4305-9a81-22c97788a626",
+                        "https://music.apple.com/at/artist/datronoise/1835099424",
+                        "https://tidal.com/artist/56337242",
+                        "https://www.deezer.com/en/artist/342555351",
+                        "https://www.youtube.com/channel/UCz4nugDVECXjsVmdGdAobQg",
                         "https://ffm.bio/8y3mk6e"
                     ],
                     "contactPoint": {
@@ -256,7 +260,7 @@
                     "name": "Where can I listen to DatroNoise releases?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "You can listen on Spotify and across other platforms linked from the official DatroNoise website."
+                        "text": "You can listen on Spotify, Apple Music, TIDAL, Deezer, and YouTube from the official DatroNoise website."
                     }
                 }
             ]
@@ -456,7 +460,8 @@
 
         .about-panel-email {
             margin-top: 10px;
-            display: inline-block;
+            display: block;
+            width: fit-content;
             font-size: 11px;
             letter-spacing: 1.2px;
             color: rgba(255, 255, 255, 0.95);
@@ -466,6 +471,7 @@
 
         .panel-close-btn {
             margin-top: 16px;
+            display: block;
             border: 0;
             background: transparent;
             color: rgba(255, 255, 255, 0.85);
@@ -474,6 +480,15 @@
             text-transform: uppercase;
             cursor: pointer;
             padding: 0;
+        }
+
+        .platform-list {
+            margin: 12px 0 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .about-panel-title,
@@ -543,6 +558,51 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .coming-soon-media {
+            filter: blur(6px) saturate(0.55) brightness(0.55);
+            transform: scale(1.06);
+        }
+
+        .coming-soon-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.72) 78%);
+            z-index: 10;
+        }
+
+        .coming-soon-label-wrap {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            z-index: 11;
+            pointer-events: none;
+        }
+
+        .coming-soon-label {
+            font-size: 13px;
+            letter-spacing: 6px;
+            color: rgba(255, 255, 255, 0.82);
+            text-transform: uppercase;
+        }
+
+        .coming-soon-divider {
+            width: 44px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.26);
+        }
+
+        @media (min-width: 640px) {
+            .coming-soon-label {
+                font-size: 15px;
+                letter-spacing: 7px;
+            }
+
         }
 
         .focus-panel {
@@ -841,8 +901,8 @@
 </head>
 <body>
     <main class="relative h-[100dvh] w-full flex items-center justify-center">
-        <div class="absolute top-0 w-full flex justify-center pt-[20px] sm:pt-[40px] z-[50] pointer-events-none">
-            <img src="https://raw.githubusercontent.com/Alofte/DTN/main/Monoc1hrom.png" alt="DatroNoise Logo" class="h-[80px] sm:h-[120px] opacity-80" width="420" height="120" decoding="async">
+        <div class="absolute top-0 w-full flex justify-center pt-[43px] sm:pt-[40px] z-[50] pointer-events-none">
+            <img src="https://raw.githubusercontent.com/Alofte/DTN/main/WEBP/Vibe%20Logo.png" alt="DatroNoise Logo" class="h-[64px] w-auto max-w-[84vw] object-contain sm:h-[120px] sm:max-w-none opacity-80" decoding="async">
         </div>
 
         <div class="absolute inset-0 z-0">
@@ -869,7 +929,7 @@
         <a href="#about" class="mobile-nav-link" data-panel="about" aria-controls="about" aria-expanded="false">About</a>
         <a href="#contact" class="mobile-nav-link" data-panel="contact" aria-controls="contact" aria-expanded="false">Contact</a>
         <a href="https://open.spotify.com/artist/2v4h11BVS2n9IFlCSK13Gi?go=1&sp_cid=0345c54a-50a2-4305-9a81-22c97788a626" target="_blank" rel="noopener" class="mobile-nav-link">Spotify</a>
-        <a href="https://ffm.bio/8y3mk6e" target="_blank" rel="noopener" class="mobile-nav-link">Platforms</a>
+        <a href="#platforms" class="mobile-nav-link" data-panel="platforms" aria-controls="platforms" aria-expanded="false">Platforms</a>
     </nav>
 
     <section class="seo-index-content" aria-label="DatroNoise SEO Content">
@@ -924,7 +984,7 @@
         <p>Yes. For sync, commercial, or licensing requests, contact Datronoise@gmail.com with project details.</p>
 
         <h3>Where can I listen to DatroNoise releases?</h3>
-        <p>You can listen on Spotify and across other platforms linked from the official DatroNoise website.</p>
+        <p>You can listen on Spotify, Apple Music, TIDAL, Deezer, and YouTube from the official DatroNoise website.</p>
     </section>
 
     <div id="about-panel-backdrop" class="about-panel-backdrop" aria-hidden="true">
@@ -932,10 +992,10 @@
             <h2 id="about-title" class="about-panel-title">This is DatroNoise</h2>
             <div class="about-panel-divider"></div>
             <p class="about-panel-text">
-                I’m a composer, producer and multi-instrumentalist creating music across R&B, pop dance and trap.<br><br>
+                DatroNoise is a composer, producer and multi-instrumentalist creating music across R&B, pop dance and trap.<br><br>
                 Since 2019, I’ve been developing my sound independently through self-learning and a hands-on approach to composition and production. Along the way, I’ve expanded into electric guitar, classical guitar, piano and other instruments as different ways of exploring ideas.<br><br>
                 My music is shaped by atmosphere, memory and feeling - often beginning with a visual moment, a sentence, or a sound I hear in everyday life before becoming music.<br><br>
-                I’m not interested in making background music or staying in one emotion. I want to create records that feel immersive and open-ended - balancing warmth, nostalgia and space in a way that stays with you after the music ends.
+                DatroNoise is not interested in making background music or staying in one emotion. The goal is to create records that feel immersive and open-ended - balancing warmth, nostalgia and space in a way that stays with you after the music ends.
             </p>
             <button type="button" id="about-close" class="panel-close-btn">Close</button>
         </section>
@@ -950,12 +1010,27 @@
         </section>
     </div>
 
+    <div id="platforms-panel-backdrop" class="about-panel-backdrop" aria-hidden="true">
+        <section id="platforms" class="about-panel" role="dialog" aria-modal="true" aria-labelledby="platforms-title" tabindex="-1">
+            <h2 id="platforms-title" class="about-panel-title">platforms</h2>
+            <div class="about-panel-divider"></div>
+            <ul class="platform-list">
+                <li><a class="about-panel-email" href="https://open.spotify.com/artist/2v4h11BVS2n9IFlCSK13Gi?go=1&sp_cid=0345c54a-50a2-4305-9a81-22c97788a626" target="_blank" rel="noopener">Spotify</a></li>
+                <li><a class="about-panel-email" href="https://music.apple.com/at/artist/datronoise/1835099424" target="_blank" rel="noopener">Apple Music</a></li>
+                <li><a class="about-panel-email" href="https://tidal.com/artist/56337242" target="_blank" rel="noopener">TIDAL</a></li>
+                <li><a class="about-panel-email" href="https://www.deezer.com/en/artist/342555351" target="_blank" rel="noopener">Deezer</a></li>
+                <li><a class="about-panel-email" href="https://www.youtube.com/channel/UCz4nugDVECXjsVmdGdAobQg" target="_blank" rel="noopener">YouTube</a></li>
+            </ul>
+            <button type="button" id="platforms-close" class="panel-close-btn">Close</button>
+        </section>
+    </div>
+
     <noscript>
         <section style="padding:16px;color:#fff;background:#000;font-family:Inter,sans-serif;text-transform:none;line-height:1.6;">
             <h2 style="margin:0 0 8px;font-size:20px;">DatroNoise</h2>
             <p style="margin:0 0 12px;">Composer, producer and multi-instrumentalist creating music across R&amp;B, pop dance and trap.</p>
             <p style="margin:0 0 12px;">Enable JavaScript for the full interactive gallery experience.</p>
-            <p style="margin:0;"><a href="https://open.spotify.com/artist/2v4h11BVS2n9IFlCSK13Gi?go=1&sp_cid=0345c54a-50a2-4305-9a81-22c97788a626" style="color:#fff;">Spotify</a> | <a href="https://ffm.bio/8y3mk6e" style="color:#fff;">Platforms</a> | <a href="mailto:Datronoise@gmail.com" style="color:#fff;">Contact</a></p>
+            <p style="margin:0;"><a href="https://open.spotify.com/artist/2v4h11BVS2n9IFlCSK13Gi?go=1&sp_cid=0345c54a-50a2-4305-9a81-22c97788a626" style="color:#fff;">Spotify</a> | <a href="https://music.apple.com/at/artist/datronoise/1835099424" style="color:#fff;">Apple Music</a> | <a href="https://tidal.com/artist/56337242" style="color:#fff;">TIDAL</a> | <a href="https://www.deezer.com/en/artist/342555351" style="color:#fff;">Deezer</a> | <a href="https://www.youtube.com/channel/UCz4nugDVECXjsVmdGdAobQg" style="color:#fff;">YouTube</a> | <a href="mailto:Datronoise@gmail.com" style="color:#fff;">Contact</a></p>
         </section>
     </noscript>
 
@@ -968,7 +1043,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const SLIDES = [
+        const RELEASE_SLIDES = [
             { id: 1, image: "https://raw.githubusercontent.com/Alofte/DTN/main/WEBP/11.webp", title: "11", spotifyId: "2ZOGo01fvXIfOjC23kIJpl", desc: "11 stands between balance and change.<br>A moment where stability begins to transform into something new." },
             { id: 2, image: "https://raw.githubusercontent.com/Alofte/DTN/main/WEBP/Laurent.webp", title: "Laurent", spotifyId: "4israPNcTaeTHrgAWIM3wO", desc: "Laurent lives in motion and light.<br>Built on bright rhythm and effortless movement." },
             { id: 3, image: "https://raw.githubusercontent.com/Alofte/DTN/main/WEBP/Gravity.webp", title: "Gravity", spotifyId: "7dXvEqKMZWRpoDmsDRjAXJ", desc: "Gravity is the force that keeps us where we belong.<br>The invisible pull between where we are and where we're meant to be." },
@@ -977,6 +1052,16 @@
             { id: 6, image: "https://raw.githubusercontent.com/Alofte/DTN/main/WEBP/Heimat.webp", title: "Heimat", spotifyId: "7CNVivjrtiYhIUN4Xt0ioT", desc: "Heimat feels like a place you almost remember.<br>A quiet tension between belonging and distance." },
             { id: 7, image: "https://raw.githubusercontent.com/Alofte/DTN/main/WEBP/Elegant.webp", title: "Elegant", spotifyId: "6QLWccrl8rkHM6w7oeIzVx", desc: "Sophisticated melodies that dance around a minimalistic core.<br>Elegant is a tribute to the beauty of simplicity and refined taste." },
             { id: 8, image: "https://raw.githubusercontent.com/Alofte/DTN/main/WEBP/21.webp", title: "21", spotifyId: "3S8LKVjFUvAWxC29KcE4F5", desc: "A moment where the past keeps moving, but nothing stays the same.<br>A quiet shift into something inevitable." }
+        ];
+
+        const DISPLAY_SLIDES = [
+            {
+                id: 'next-release',
+                image: "https://raw.githubusercontent.com/Alofte/DTN/main/WEBP/Rumination.webp",
+                title: '02.07.2026',
+                comingSoon: true
+            },
+            ...RELEASE_SLIDES
         ];
 
         class ShuffleText {
@@ -1020,12 +1105,16 @@
         const mobileBottomNav = document.getElementById('mobile-bottom-nav');
         const aboutPanelBackdrop = document.getElementById('about-panel-backdrop');
         const contactPanelBackdrop = document.getElementById('contact-panel-backdrop');
+        const platformsPanelBackdrop = document.getElementById('platforms-panel-backdrop');
         const aboutPanel = document.getElementById('about');
         const contactPanel = document.getElementById('contact');
+        const platformsPanel = document.getElementById('platforms');
         const aboutCloseButton = document.getElementById('about-close');
         const contactCloseButton = document.getElementById('contact-close');
+        const platformsCloseButton = document.getElementById('platforms-close');
         const aboutTrigger = mobileBottomNav.querySelector('[data-panel="about"]');
         const contactTrigger = mobileBottomNav.querySelector('[data-panel="contact"]');
+        const platformsTrigger = mobileBottomNav.querySelector('[data-panel="platforms"]');
         const captionShuffle = new ShuffleText(slideCaption);
         let activeFocusSlide = null;
         let activeDesktopFrame = null;
@@ -1041,31 +1130,34 @@
             const desktop = `https://images.weserv.nl/?url=${source}&w=1080&output=webp&q=82`;
 
             return {
-                src: desktop,
+                // Use raw GitHub as a reliable fallback src, with optimized variants in srcset.
+                src: url,
                 srcset: `${mobile} 640w, ${desktop} 1080w`
             };
         }
 
         function getAltText(slide) {
-            const description = slide.desc.replace(/<br\s*\/?>/gi, ' ').trim();
+            const description = (slide.desc || '').replace(/<br\s*\/?>/gi, ' ').trim();
+            if (!description) return `${slide.title} by DatroNoise`;
             return `${slide.title} by DatroNoise. ${description}`;
         }
 
         let bgMarkup = '';
         let fgMarkup = '';
 
-        SLIDES.forEach((slide, index) => {
+        DISPLAY_SLIDES.forEach((slide, index) => {
             const imageSet = getResponsiveImageSet(slide.image);
             const altText = getAltText(slide);
-            const loadingAttr = index === 0 ? 'eager' : 'lazy';
-            const priorityAttr = index === 0 ? 'high' : 'auto';
+            const loadingAttr = index === 1 ? 'eager' : 'lazy';
+            const priorityAttr = index === 1 ? 'high' : 'auto';
+            const descText = slide.desc || '';
 
             bgMarkup += `
                 <div class="swiper-slide bg-black">
                     <div class="absolute inset-0 bg-black/50 z-[1]"></div>
                 </div>`;
 
-            const tapHintHTML = index === 1 && !hasSeenHint ? `
+            const tapHintHTML = index === 2 && !hasSeenHint ? `
                 <div class="tap-hint" id="tap-hint">
                     <svg class="tap-hint-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 19V5M5 12l7-7 7 7"></path>
@@ -1074,6 +1166,18 @@
                 </div>
             ` : '';
 
+            const cardContent = slide.comingSoon
+                ? `<img src="${imageSet.src}" srcset="${imageSet.srcset}" sizes="(max-width: 639px) 300px, 420px" width="840" height="840" loading="${loadingAttr}" fetchpriority="${priorityAttr}" decoding="async" alt="${altText}" class="slide-cover-image coming-soon-media select-none pointer-events-none">
+                   <div class="coming-soon-vignette"></div>
+                   <div class="coming-soon-label-wrap">
+                       <span class="coming-soon-label">COMING SOON</span>
+                       <span class="coming-soon-divider"></span>
+                   </div>`
+                : `<img src="${imageSet.src}" srcset="${imageSet.srcset}" sizes="(max-width: 639px) 300px, 420px" width="840" height="840" loading="${loadingAttr}" fetchpriority="${priorityAttr}" decoding="async" alt="${altText}" class="slide-cover-image select-none pointer-events-none">
+                   <div class="explore-btn">
+                       <div class="explore-btn-content">EXPLORE</div>
+                   </div>`;
+
             fgMarkup += `
                 <div class="swiper-slide !w-[300px] !h-[300px] sm:!w-[420px] sm:!h-[420px] image-card">
                     ${tapHintHTML}
@@ -1081,13 +1185,10 @@
                         <div class="track-player-wrapper">
                             <iframe class="slide-spotify-frame" src="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" scrolling="no"></iframe>
                         </div>
-                        <div class="track-sub-desc">${slide.desc}</div>
+                        <div class="track-sub-desc">${descText}</div>
                     </div>
                     <div class="card-inner">
-                        <img src="${imageSet.src}" srcset="${imageSet.srcset}" sizes="(max-width: 639px) 300px, 420px" width="840" height="840" loading="${loadingAttr}" fetchpriority="${priorityAttr}" decoding="async" alt="${altText}" class="slide-cover-image select-none pointer-events-none">
-                        <div class="explore-btn">
-                            <div class="explore-btn-content">EXPLORE</div>
-                        </div>
+                        ${cardContent}
                     </div>
                 </div>`;
         });
@@ -1106,7 +1207,7 @@
         let hintShown = false;
 
         function showFirstSlideExplore(swiper) {
-            const firstSlide = swiper.slides[0];
+            const firstSlide = swiper.slides[1];
             const exploreBtn = firstSlide.querySelector('.explore-btn');
 
             if (exploreBtn && window.innerWidth < 640) {
@@ -1136,6 +1237,7 @@
         fgSwiper = new Swiper('.swiper-foreground', {
             centeredSlides: true,
             slidesPerView: 'auto',
+            initialSlide: 1,
             speed: 1800,
             watchSlidesProgress: true,
             slideToClickedSlide: true,
@@ -1143,7 +1245,7 @@
             allowTouchMove: true,
             on: {
                 init: function() {
-                    captionShuffle.setText(SLIDES[0].title);
+                    captionShuffle.setText(DISPLAY_SLIDES[this.activeIndex].title);
                     this.emit('setTranslate', 0);
                     setupExploreButtons(this);
                     if (window.innerWidth < 640) showFirstSlideExplore(this);
@@ -1151,9 +1253,9 @@
                 },
                 slideChange: function() {
                     bgSwiper.slideTo(this.activeIndex);
-                    captionShuffle.setText(SLIDES[this.activeIndex].title);
+                    captionShuffle.setText(DISPLAY_SLIDES[this.activeIndex].title);
                     setupExploreButtons(this);
-                    if (this.activeIndex === 1) showSecondSlideHint();
+                    if (this.activeIndex === 2) showSecondSlideHint();
                     requestAnimationFrame(positionMobileCaption);
                 },
                 setTranslate: function() {
@@ -1164,6 +1266,7 @@
                         const slide = swiper.slides[i];
                         const progress = slide.progress;
                         const exploreBtn = slide.querySelector('.explore-btn');
+                        const isComingSoon = DISPLAY_SLIDES[i] && DISPLAY_SLIDES[i].comingSoon;
                         const isCenter = Math.abs(progress) < 0.1;
                         let translateX;
                         let scale;
@@ -1188,7 +1291,7 @@
                         slide.style.zIndex = zIndex;
                         slide.style.transition = 'transform 1.8s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1.8s cubic-bezier(0.25, 0.1, 0.25, 1), z-index 0s linear';
 
-                        const allowCenterInteraction = isCenter && (!isFocusMode || window.innerWidth >= 640);
+                        const allowCenterInteraction = isCenter && (!isFocusMode || window.innerWidth >= 640) && !isComingSoon;
 
                         if (allowCenterInteraction) {
                             slide.style.pointerEvents = 'auto';
@@ -1284,6 +1387,7 @@
         function enterFocusMode(activeSlide) {
             closeAboutPanel();
             closeContactPanel();
+            closePlatformsPanel();
             document.body.classList.add('focus-mode');
             fgSwiper.params.allowTouchMove = false;
             fgSwiper.update();
@@ -1291,8 +1395,8 @@
             document.querySelectorAll('.explore-btn').forEach((btn) => btn.classList.remove('visible'));
 
             const index = Array.from(fgSwiper.slides).indexOf(activeSlide);
-            const data = SLIDES[index];
-            if (!data) return;
+            const data = DISPLAY_SLIDES[index];
+            if (!data || data.comingSoon) return;
 
             activeFocusSlide = activeSlide;
 
@@ -1335,11 +1439,13 @@
         function openAboutPanel() {
             if (!aboutPanelBackdrop || document.body.classList.contains('focus-mode')) return;
             closeContactPanel({ syncHash: false });
+            closePlatformsPanel({ syncHash: false });
             lastPanelTrigger = aboutTrigger;
             aboutPanelBackdrop.classList.add('open');
             aboutPanelBackdrop.setAttribute('aria-hidden', 'false');
             aboutTrigger.setAttribute('aria-expanded', 'true');
             contactTrigger.setAttribute('aria-expanded', 'false');
+            platformsTrigger.setAttribute('aria-expanded', 'false');
             if (window.location.hash !== '#about') history.replaceState(null, '', `${baseUrl}#about`);
             requestAnimationFrame(() => aboutPanel.focus());
         }
@@ -1357,11 +1463,13 @@
         function openContactPanel() {
             if (!contactPanelBackdrop || document.body.classList.contains('focus-mode')) return;
             closeAboutPanel({ syncHash: false });
+            closePlatformsPanel({ syncHash: false });
             lastPanelTrigger = contactTrigger;
             contactPanelBackdrop.classList.add('open');
             contactPanelBackdrop.setAttribute('aria-hidden', 'false');
             contactTrigger.setAttribute('aria-expanded', 'true');
             aboutTrigger.setAttribute('aria-expanded', 'false');
+            platformsTrigger.setAttribute('aria-expanded', 'false');
             if (window.location.hash !== '#contact') history.replaceState(null, '', `${baseUrl}#contact`);
             requestAnimationFrame(() => contactPanel.focus());
         }
@@ -1376,6 +1484,30 @@
             if (restoreFocus && wasOpen && lastPanelTrigger) lastPanelTrigger.focus();
         }
 
+        function openPlatformsPanel() {
+            if (!platformsPanelBackdrop || document.body.classList.contains('focus-mode')) return;
+            closeAboutPanel({ syncHash: false });
+            closeContactPanel({ syncHash: false });
+            lastPanelTrigger = platformsTrigger;
+            platformsPanelBackdrop.classList.add('open');
+            platformsPanelBackdrop.setAttribute('aria-hidden', 'false');
+            platformsTrigger.setAttribute('aria-expanded', 'true');
+            aboutTrigger.setAttribute('aria-expanded', 'false');
+            contactTrigger.setAttribute('aria-expanded', 'false');
+            if (window.location.hash !== '#platforms') history.replaceState(null, '', `${baseUrl}#platforms`);
+            requestAnimationFrame(() => platformsPanel.focus());
+        }
+
+        function closePlatformsPanel({ syncHash = true, restoreFocus = false } = {}) {
+            if (!platformsPanelBackdrop) return;
+            const wasOpen = platformsPanelBackdrop.classList.contains('open');
+            platformsPanelBackdrop.classList.remove('open');
+            platformsPanelBackdrop.setAttribute('aria-hidden', 'true');
+            platformsTrigger.setAttribute('aria-expanded', 'false');
+            if (syncHash && window.location.hash === '#platforms') history.replaceState(null, '', baseUrl);
+            if (restoreFocus && wasOpen && lastPanelTrigger) lastPanelTrigger.focus();
+        }
+
         function syncPanelsWithHash() {
             if (window.location.hash === '#about') {
                 openAboutPanel();
@@ -1387,8 +1519,14 @@
                 return;
             }
 
+            if (window.location.hash === '#platforms') {
+                openPlatformsPanel();
+                return;
+            }
+
             closeAboutPanel({ syncHash: false });
             closeContactPanel({ syncHash: false });
+            closePlatformsPanel({ syncHash: false });
         }
 
         window.addEventListener('resize', () => {
@@ -1397,6 +1535,7 @@
             if (window.innerWidth >= 640) {
                 closeAboutPanel();
                 closeContactPanel();
+                closePlatformsPanel();
             }
 
             if (!document.body.classList.contains('focus-mode') || !activeFocusSlide) return;
@@ -1407,7 +1546,7 @@
                     activeDesktopFrame = null;
                 }
                 const index = Array.from(fgSwiper.slides).indexOf(activeFocusSlide);
-                const data = SLIDES[index];
+                const data = DISPLAY_SLIDES[index];
                 if (data) {
                     trackDesc.innerHTML = data.desc;
                     spotifyFrame.src = `https://open.spotify.com/embed/track/${data.spotifyId}?utm_source=generator&theme=0`;
@@ -1423,7 +1562,7 @@
 
             if (!activeDesktopFrame) {
                 const index = Array.from(fgSwiper.slides).indexOf(activeFocusSlide);
-                const data = SLIDES[index];
+                const data = DISPLAY_SLIDES[index];
                 const desktopFrame = activeFocusSlide.querySelector('.slide-spotify-frame');
                 if (data && desktopFrame) {
                     desktopFrame.src = `https://open.spotify.com/embed/track/${data.spotifyId}?utm_source=generator&theme=0`;
@@ -1445,11 +1584,17 @@
                     openContactPanel();
                     return;
                 }
+
+                if (panel === 'platforms') {
+                    openPlatformsPanel();
+                    return;
+                }
             });
         });
 
         aboutCloseButton.addEventListener('click', () => closeAboutPanel({ restoreFocus: true }));
         contactCloseButton.addEventListener('click', () => closeContactPanel({ restoreFocus: true }));
+        platformsCloseButton.addEventListener('click', () => closePlatformsPanel({ restoreFocus: true }));
 
         window.addEventListener('hashchange', syncPanelsWithHash);
         syncPanelsWithHash();
@@ -1462,6 +1607,10 @@
             if (!e.target.closest('.about-panel')) closeContactPanel({ restoreFocus: true });
         });
 
+        platformsPanelBackdrop.addEventListener('click', (e) => {
+            if (!e.target.closest('.about-panel')) closePlatformsPanel({ restoreFocus: true });
+        });
+
         document.addEventListener('click', (e) => {
             if (!document.body.classList.contains('focus-mode')) return;
             if (e.target.closest('#focus-panel')) return;
@@ -1471,7 +1620,7 @@
         });
 
         document.addEventListener('wheel', (e) => {
-            const hasOpenPanel = aboutPanelBackdrop.classList.contains('open') || contactPanelBackdrop.classList.contains('open');
+            const hasOpenPanel = aboutPanelBackdrop.classList.contains('open') || contactPanelBackdrop.classList.contains('open') || platformsPanelBackdrop.classList.contains('open');
             if (document.body.classList.contains('focus-mode') || hasOpenPanel) return;
             e.preventDefault();
             if (e.deltaY > 0) fgSwiper.slideNext();
@@ -1479,16 +1628,17 @@
         }, { passive: false });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && (aboutPanelBackdrop.classList.contains('open') || contactPanelBackdrop.classList.contains('open'))) {
+            if (e.key === 'Escape' && (aboutPanelBackdrop.classList.contains('open') || contactPanelBackdrop.classList.contains('open') || platformsPanelBackdrop.classList.contains('open'))) {
                 closeAboutPanel({ restoreFocus: true });
                 closeContactPanel({ restoreFocus: true });
+                closePlatformsPanel({ restoreFocus: true });
                 return;
             }
             if (e.key === 'Escape' && document.body.classList.contains('focus-mode')) {
                 exitFocusMode();
                 return;
             }
-            const hasOpenPanel = aboutPanelBackdrop.classList.contains('open') || contactPanelBackdrop.classList.contains('open');
+            const hasOpenPanel = aboutPanelBackdrop.classList.contains('open') || contactPanelBackdrop.classList.contains('open') || platformsPanelBackdrop.classList.contains('open');
             if (document.body.classList.contains('focus-mode') || hasOpenPanel) return;
             if (e.key === 'ArrowRight') fgSwiper.slideNext();
             if (e.key === 'ArrowLeft') fgSwiper.slidePrev();
